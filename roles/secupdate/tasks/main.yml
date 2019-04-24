@@ -1,0 +1,9 @@
+- name: install aptitude package
+  apt: name=aptitude update_cache=yes state=latest
+
+- name: upload secupdate.sh
+  copy: src=opt/secupdate.sh dest=/opt/secupdate.sh mode=0755
+
+- name: crontab entry
+  cron: name=secupdate user=root special_time=daily job=/opt/secupdate.sh
+
